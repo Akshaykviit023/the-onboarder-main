@@ -13,8 +13,9 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+
 origins = [
-    "http://localhost:3000",
+    "http://localhost:3000"
     # Add any other origins if necessary
 ]
 
@@ -93,7 +94,7 @@ def make_rag_prompt(query: str, relevant_passage: str) -> str:
 def generate_answer(prompt: str) -> str:
     
     answer =  chat.send_message(prompt)
-    print(chat.history)
+    #print(chat.history)
     return answer.text
 
 # API Endpoints
@@ -122,3 +123,7 @@ async def query_db(request: QueryRequest):
     answer = generate_answer(prompt)
     
     return JSONResponse(content={"answer": answer})
+
+@app.get("/chatHistory")
+async def chat_history():
+    return JSONResponse(content={"history": chat.history})

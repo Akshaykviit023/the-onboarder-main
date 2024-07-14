@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
-import { Upload } from "lucide-react";
+import UploadModal from "./UploadModal";
+
 
 const Navbar = () => {
     const gradientStyle = {
@@ -11,12 +12,15 @@ const Navbar = () => {
         color: 'transparent', 
       };
 
+
   return (
     <div className="fixed top-0 z-50 bg-background w-full flex justify-center py-4 border-b border-solid border-neutral-800">
+        
         <div className="w-[80%] flex justify-between items-center">
             <h1 className="text-2xl" style={gradientStyle}>The Onboarder</h1>
             <div className="flex items-center gap-4 md:gap-8 ">
-                <Button variant="ghost"><Upload /></Button>
+                
+                <UploadModal />
                 <UserButton
                 appearance={{
                     elements: {
